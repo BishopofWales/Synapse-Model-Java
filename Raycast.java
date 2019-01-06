@@ -37,4 +37,8 @@ public class Raycast {
         double dy = y1 - y2;
         return dx * dx + dy * dy;
     }
+
+    public static double dist(double x1, double y1, double x2, double y2) {
+        return Math.sqrt(distSq(x1, y1, x2, y2));
+    }
 }

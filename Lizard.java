@@ -57,4 +57,14 @@ public class Lizard {
     public void setScore(double score) {
         _score = score;
     }
+
+    public void becomeChildOf(Lizard parent) {
+        for (int i = 0; i < parent._lizBrain.getSize(); i++) {
+            Neuron[] neurons = parent._lizBrain.getConsAt(i);
+            for (int k = 0; k < neurons.length; k++) {
+
+            }
+        }
+    }
+
 }
