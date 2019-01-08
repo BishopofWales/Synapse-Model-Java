@@ -13,12 +13,14 @@ public class Lizard {
     private double _yPos;
     private double _rotation;
     private double _score;
+    private Random _rand;
 
     public Lizard(double xPos, double yPos, double rotation, Random rand) {
         _lizBrain = new Brain(rand);
         _xPos = xPos;
         _yPos = yPos;
         _rotation = rotation;
+        _rand = rand;
     }
 
     void proccessInput(Circle[] worldGeom, long time) {
@@ -59,12 +61,12 @@ public class Lizard {
     }
 
     public void becomeChildOf(Lizard parent) {
-        for (int i = 0; i < parent._lizBrain.getSize(); i++) {
-            Neuron[] neurons = parent._lizBrain.getConsAt(i);
-            for (int k = 0; k < neurons.length; k++) {
-
-            }
-        }
+        _lizBrain.copyAndMutate(parent._lizBrain);
+        /*
+         * for (int i = 0; i < parent._lizBrain.getSize(); i++) { Neuron[] cons =
+         * parent._lizBrain.getConsAt(i); for (int k = 0; k < neurons.length; k++) { if
+         * (_rand.nextDouble() < C.MUTATION_CHANCE) { cons[i] = } } }
+         */
     }
 
 }

@@ -1,11 +1,14 @@
 import java.util.*;
 
 public class Brain {
-    public static final int NUM_NEUR = 1000;
+
     private Neuron[] _neurons;
+    private Random _rand;
+    private int[] _potList;
 
     public Brain(Random rand) {
         _neurons = new Neuron[NUM_NEUR];
+        _rand = rand;
         // First we intitate all the neurons
         for (int i = 0; i < NUM_NEUR; i++) {
             _neurons[i] = new Neuron();
@@ -13,24 +16,36 @@ public class Brain {
         // Next we randomly assign connections
         for (int i = 0; i < NUM_NEUR; i++) {
             for (int k = 0; k < C.INI_CONS; k++) {
-                _neurons[i].addConnection(_neurons[rand.nextInt(NUM_NEUR)]);
+                _neurons[i].addConnection(_neurons[_rand.nextInt(NUM_NEUR)]);
             }
         }
     }
 
-    public void stimulateNeur(int neurIndex, long time) {
-        _neurons[neurIndex].release(time);
+    public void stimulateNeur(int neurIndex) {
+        _neurons[neurIndex].release(_potList);
     }
 
-    public boolean readNeur(int neurIndex) {
-        return _neurons[neurIndex].readFired();
+    public void update() {
+
     }
 
-    public int getSize() {
-        return _neurons.length;
+    public double readNeur(int neurIndex) {
+        return _neurons[neurIndex].getPol();
     }
 
-    public Neuron[] getConsAt(int index) {
-        return _neurons[index].getCons();
+    /*
+     * void copyAndMutate(Brain parentBrain) { for (int i = 0; i <
+     * parentBrain._neurons.length; i++) { Neuron[] cons =
+     * parentBrain._neurons[i].getCons(); for (int k = 0; k < cons.length; k++) { if
+     * (_rand.nextDouble() < C.MUTATION_CHANCE) { cons[k] =
+     * _neurons[_rand.nextInt(NUM_NEUR)]; } } } }
+     */
+    public void printNeurs() {
+        for (int i = 0; i < _neurons.length; i++) {
+            System.out.print("Neuron: " + i);
+            _neurons[i].printCons();
+            System.out.println();
+        }
     }
+
 }

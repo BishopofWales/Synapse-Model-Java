@@ -63,4 +63,15 @@ public class Neuron {
     public Neuron[] getCons() {
         return Arrays.copyOf(_cons, _cons.length);
     }
+
+    public void setCons(Neuron[] cons) {
+        _cons = cons;
+    }
+
+    public void printCons() {
+        for (Neuron neuron : _cons) {
+            System.out.print(neuron);
+        }
+    }
+
 }
