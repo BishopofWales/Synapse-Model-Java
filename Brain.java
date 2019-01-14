@@ -3,30 +3,41 @@ import java.util.*;
 public class Brain {
 
     private Neuron[] _neurons;
-    private Random _rand;
-    private int[] _potList;
+    private Queue<Neuron> _stimList;
+    private long _time;
 
-    public Brain(Random rand) {
-        _neurons = new Neuron[NUM_NEUR];
-        _rand = rand;
-        // First we intitate all the neurons
-        for (int i = 0; i < NUM_NEUR; i++) {
-            _neurons[i] = new Neuron();
+    public Brain(int[] dna) {
+        _neurons = new Neuron[C.NUM_NEUR];
+        _stimList = new ArrayDeque<Neuron>();
+        for (int i = 0; i < C.NUM_NEUR; i++) {
+            _neurons[i] = new Neuron(_stimList);
+            // System.out.println(i + " " + _neurons[i]);
         }
-        // Next we randomly assign connections
-        for (int i = 0; i < NUM_NEUR; i++) {
-            for (int k = 0; k < C.INI_CONS; k++) {
-                _neurons[i].addConnection(_neurons[_rand.nextInt(NUM_NEUR)]);
+        // Interpret dna into neuron connections.
+        for (int i = 0; i < C.NUM_NEUR; i++) {
+            Neuron[] cons = new Neuron[C.CONS];
+            for (int k = 0; k < C.CONS; k++) {
+                cons[k] = _neurons[dna[i * C.CONS + k]];
             }
+            _neurons[i].setCons(cons);
         }
+        _time = 0;
     }
 
-    public void stimulateNeur(int neurIndex) {
-        _neurons[neurIndex].release(_potList);
+    public void releaseNeur(int neurIndex) {
+        _neurons[neurIndex].release(_time);
     }
 
     public void update() {
-
+        // Takes all the neurons that went over their action potential the last run and
+        // makes them fire.
+        // Any neurons addded this cycle will fire in the next.
+        int size = _stimList.size();
+        for (int i = 0; i < size; i++) {
+            Neuron neuron = _stimList.poll();
+            neuron.release(_time);
+        }
+        _time++;
     }
 
     public double readNeur(int neurIndex) {

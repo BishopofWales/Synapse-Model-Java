@@ -1,10 +1,10 @@
 public class C {
     // Class constants
-    public static int CLASS_SIZE = 100;
+    public static int CLASS_SIZE = 1000;
     // Mutation constants
     public static double MUTATION_CHANCE = .01;
     // Brain constants
-    public static final int NUM_NEUR = 1000;
-    public static int INI_CONS = 7;
-    public static int MAX_CONS = 30;
+    public static final int NUM_NEUR = 3000;
+    public static int CONS = 30;
+
 }
