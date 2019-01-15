@@ -19,12 +19,25 @@ public class Mutator {
         return randDNA;
     }
 
-    public void MutateClass(Lizard[] lizards) {
-        int count = 1;
-        // First 5 get 8 offspring (1 clone 7 siblings)
-
-        // Second 20 get (1 clone 1 sibling)
-        // Third 20 get (1 clone)
-        // Bottom 55 are discarded
+    public void mutateClass(Lizard[] lizards) {
+        //Top 20 lizards get 9 offspring each
+        for(int i = 0; i < 20; i++){
+            for(int k = 0; k < 9; k++){
+                copyAndMutate(lizards[i].getDNA(), lizards[i*9+k].getDNA());
+                //lizards[i*9+k]
+                lizards[i*9+k].readDNA();
+            }
+            
+        }
+    }
+    void copyAndMutate(int[] parentDNA, int[] childDNA){
+        for(int i = 0; i < parentDNA.length; i++){
+            if(_rand.nextDouble() < C.MUTATION_CHANCE){
+                childDNA[i] = _rand.nextInt(C.NUM_NEUR);
+            }
+            else{
+                childDNA[i] = parentDNA[i];
+            }
+        }
     }
 }

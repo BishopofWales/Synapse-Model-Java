@@ -1,6 +1,6 @@
 public class C {
     // Class constants
-    public static int CLASS_SIZE = 1000;
+    public static int CLASS_SIZE = 200;
     // Mutation constants
     public static double MUTATION_CHANCE = .01;
     // Brain constants

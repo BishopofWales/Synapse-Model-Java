@@ -14,6 +14,11 @@ public class Brain {
             // System.out.println(i + " " + _neurons[i]);
         }
         // Interpret dna into neuron connections.
+        readDNA(dna);
+        _time = 0;
+    }
+
+    public void readDNA(int[] dna){
         for (int i = 0; i < C.NUM_NEUR; i++) {
             Neuron[] cons = new Neuron[C.CONS];
             for (int k = 0; k < C.CONS; k++) {
@@ -21,7 +26,6 @@ public class Brain {
             }
             _neurons[i].setCons(cons);
         }
-        _time = 0;
     }
 
     public void releaseNeur(int neurIndex) {
@@ -44,13 +48,6 @@ public class Brain {
         return _neurons[neurIndex].getPol();
     }
 
-    /*
-     * void copyAndMutate(Brain parentBrain) { for (int i = 0; i <
-     * parentBrain._neurons.length; i++) { Neuron[] cons =
-     * parentBrain._neurons[i].getCons(); for (int k = 0; k < cons.length; k++) { if
-     * (_rand.nextDouble() < C.MUTATION_CHANCE) { cons[k] =
-     * _neurons[_rand.nextInt(NUM_NEUR)]; } } } }
-     */
     public void printNeurs() {
         for (int i = 0; i < _neurons.length; i++) {
             System.out.print("Neuron: " + i);

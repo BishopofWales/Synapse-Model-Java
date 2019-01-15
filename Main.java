@@ -1,6 +1,8 @@
 import java.io.*;
 import java.util.*;
 
+import javax.swing.JFrame;
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -31,9 +33,29 @@ public class Main {
          */
         Random rand = new Random();
         Mutator mut = new Mutator(rand);
+        Lizard[] lizards = new Lizard[C.CLASS_SIZE];
         for (int i = 0; i < C.CLASS_SIZE; i++) {
-            Brain newBrain = new Brain(mut.randomDNA());
+            lizards[i] =  new Lizard(0,0,0,mut.randomDNA());
         }
+        
+        Grader grader = new Grader(rand);
+        Mutator mutator = new Mutator(rand);
+
+
+        /*
+        for(int i = 0; i < 1000; i++){
+            grader.gradeLizards(lizards);
+            mutator.mutateClass(lizards);
+            for(int k = 0; k < lizards.length; k++){
+                System.out.println(k + " " + lizards[k].getScore());
+            }
+            System.out.println("________________________________________");
+           
+        }
+        */
+        JFrame frame = new JFrame();
+        frame.setVisible(true);
+        System.out.println("here!");
     }
 
 }
