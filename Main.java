@@ -3,6 +3,7 @@ import java.util.*;
 
 import javax.swing.JFrame;
 
+
 public class Main {
     public static void main(String[] args) {
         /*
@@ -41,9 +42,9 @@ public class Main {
         Grader grader = new Grader(rand);
         Mutator mutator = new Mutator(rand);
 
-
+        
         /*
-        for(int i = 0; i < 1000; i++){
+        for(int i = 0; i < 100; i++){
             grader.gradeLizards(lizards);
             mutator.mutateClass(lizards);
             for(int k = 0; k < lizards.length; k++){
@@ -54,8 +55,27 @@ public class Main {
         }
         */
         JFrame frame = new JFrame();
+        
+        frame.setSize(1000, 700);
+        Circle[] worldGeom = new Circle[1];
+        LizViewer panel = new LizViewer(lizards[0], worldGeom);
+        frame.add(panel);
+
         frame.setVisible(true);
+
+        panel.drawLine();
+
+        //Graphics2D g2 = (Graphics2D) panel.getGraphics();
+        ///System.out.println(lin==null);
+        // System.out.println(g2==null);
+
+       
+        
         System.out.println("here!");
-    }
+        
+    }   
+
+  
+
 
 }
