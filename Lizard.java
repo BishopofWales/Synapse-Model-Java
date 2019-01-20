@@ -1,6 +1,4 @@
-import java.util.*;
-
-public class Lizard implements Comparable<Lizard>{
+public class Lizard implements Comparable<Lizard> {
 
     public static final double LIN_SPD = 5.0; // m/s public
     public static final double ANG_SPD = Math.PI / 2.0; // rad/s
@@ -14,7 +12,7 @@ public class Lizard implements Comparable<Lizard>{
     private double _yPos;
     private double _rotation;
     private double _score;
-    //private Random _rand;
+    // private Random _rand;
     private int[] _dna;
 
     public Lizard(double xPos, double yPos, double rotation, int[] dna) {
@@ -26,9 +24,10 @@ public class Lizard implements Comparable<Lizard>{
         _lizBrain = new Brain(_dna);
     }
 
-    public void readDNA(){
+    public void readDNA() {
         _lizBrain.readDNA(_dna);
     }
+
     void proccessInput(Circle[] worldGeom) {
         // First we check if we see any geometry and stimulate the eye neuron if we do.
         for (Circle circle : worldGeom) {
@@ -51,12 +50,17 @@ public class Lizard implements Comparable<Lizard>{
             _yPos += Math.sin(_rotation) * LIN_SPD;
         }
     }
+
     public double getX() {
         return _xPos;
     }
 
     public double getY() {
         return _yPos;
+    }
+
+    public double getAng() {
+        return _rotation;
     }
 
     public double getScore() {
@@ -66,14 +70,23 @@ public class Lizard implements Comparable<Lizard>{
     public void setScore(double score) {
         _score = score;
     }
-    public int[] getDNA(){
+
+    public int[] getDNA() {
         return _dna;
     }
-    public void setDNA(int[] dna){
+
+    public void setDNA(int[] dna) {
         _dna = dna;
     }
+
     @Override
     public int compareTo(Lizard arg0) {
-        return this.getScore() > arg0.getScore() ? -1:1;
+        return this.getScore() > arg0.getScore() ? -1 : 1;
+    }
+
+    public void resetLizard() {
+        _xPos = 0;
+        _yPos = 0;
+        _lizBrain.reset();
     }
 }

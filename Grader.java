@@ -4,14 +4,16 @@ import javax.swing.JPanel;
 
 public class Grader {
 
-    private static final int TIME_GIVEN = 100;
-    private static final double MIN_DIST_SQ = 11 * 11;
-    private static final double DIST_TO_GOAL = 300;
-    private static final double CIRCLE_SIZE = 50;
+    public static final int TIME_GIVEN = 100;
+    private static final double MIN_DIST_SQ = 11.0 * 11.0;
+    public static final double DIST_TO_GOAL = 300.0;
+    public static final double CIRCLE_SIZE = 50.0;
     private Random _rand;
 
     public void gradeLizards(Lizard[] lizards) {
+
         for (Lizard lizard : lizards) {
+            lizard.resetLizard();
             testLizard(lizard);
         }
         Arrays.sort(lizards);

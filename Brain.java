@@ -18,7 +18,7 @@ public class Brain {
         _time = 0;
     }
 
-    public void readDNA(int[] dna){
+    public void readDNA(int[] dna) {
         for (int i = 0; i < C.NUM_NEUR; i++) {
             Neuron[] cons = new Neuron[C.CONS];
             for (int k = 0; k < C.CONS; k++) {
@@ -53,6 +53,12 @@ public class Brain {
             System.out.print("Neuron: " + i);
             _neurons[i].printCons();
             System.out.println();
+        }
+    }
+
+    public void reset() {
+        for (Neuron neuron : _neurons) {
+            neuron.reset();
         }
     }
 

@@ -27,7 +27,7 @@ public class Neuron {
         // Next we add the pulse to the neuron
         _polarL += PULSE_POWER;
         if (_polarL > ACTION_POT && !_addedtoRel) {
-            //System.out.println("added to rel list " + this);
+            // System.out.println("added to rel list " + this);
             _relQueue.add(this);
             _addedtoRel = true;
         }
@@ -40,7 +40,7 @@ public class Neuron {
 
     public void release(long time) {
         _addedtoRel = false;
-        //System.out.println("released " + this);
+        // System.out.println("released " + this);
         for (int i = 0; i < _cons.length; i++) {
             // Stimulate neurons here.
             _cons[i].stimulate(time);
@@ -60,6 +60,10 @@ public class Neuron {
         for (Neuron neuron : _cons) {
             System.out.print(neuron);
         }
+    }
+
+    public void reset() {
+        _polarL = 0;
     }
 
 }

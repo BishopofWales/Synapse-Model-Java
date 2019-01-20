@@ -3,7 +3,6 @@ import java.util.*;
 
 import javax.swing.JFrame;
 
-
 public class Main {
     public static void main(String[] args) {
         /*
@@ -35,47 +34,57 @@ public class Main {
         Random rand = new Random();
         Mutator mut = new Mutator(rand);
         Lizard[] lizards = new Lizard[C.CLASS_SIZE];
+
+        Scanner kbd = new Scanner(System.in);
+
         for (int i = 0; i < C.CLASS_SIZE; i++) {
-            lizards[i] =  new Lizard(0,0,0,mut.randomDNA());
+            lizards[i] = new Lizard(0, 0, 0, mut.randomDNA());
         }
-        
+
         Grader grader = new Grader(rand);
         Mutator mutator = new Mutator(rand);
 
-        
-        /*
-        for(int i = 0; i < 100; i++){
+        for (int i = 0; i < 100; i++) {
             grader.gradeLizards(lizards);
             mutator.mutateClass(lizards);
-            for(int k = 0; k < lizards.length; k++){
+            for (int k = 0; k < lizards.length; k++) {
                 System.out.println(k + " " + lizards[k].getScore());
             }
-            System.out.println("________________________________________");
-           
+            System.out.println("________________________________________" + i);
+
         }
-        */
         JFrame frame = new JFrame();
-        
+
         frame.setSize(1000, 700);
-        Circle[] worldGeom = new Circle[1];
-        LizViewer panel = new LizViewer(lizards[0], worldGeom);
-        frame.add(panel);
 
         frame.setVisible(true);
 
-        panel.drawLine();
+        while (true) {
+            System.out.println("Which lizard would you like to see?");
+            int index = kbd.nextInt();
 
-        //Graphics2D g2 = (Graphics2D) panel.getGraphics();
-        ///System.out.println(lin==null);
-        // System.out.println(g2==null);
+            System.out.println("What angle of food would you like?");
+            double angle = kbd.nextDouble();
+            double angleRad = angle * Math.PI / 180;
+            // Run the lizard viewer
+            Circle[] worldGeom = new Circle[1];
+            worldGeom[0] = new Circle(Grader.CIRCLE_SIZE, Grader.DIST_TO_GOAL * Math.cos(angleRad),
+                    Grader.DIST_TO_GOAL * Math.cos(angleRad));
 
-       
-        
-        System.out.println("here!");
-        
-    }   
+            LizViewer panel = new LizViewer(lizards[index], worldGeom);
+            frame.add(panel);
+            panel.runView();
 
-  
+            System.out.println("(R)un another lizard or (q)uit?");
+            String runAgain = kbd.next();
 
+            if (runAgain.charAt(0) == 'q') {
+                System.exit(0);
+            }
+            // Perform clean up
+            frame.remove(panel);
+        }
+
+    }
 
 }
