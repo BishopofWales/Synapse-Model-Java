@@ -44,7 +44,7 @@ public class Main {
         Grader grader = new Grader(rand);
         Mutator mutator = new Mutator(rand);
 
-        for (int i = 0; i < 100; i++) {
+        for (int i = 0; i < 1; i++) {
             grader.gradeLizards(lizards);
             mutator.mutateClass(lizards);
             for (int k = 0; k < lizards.length; k++) {

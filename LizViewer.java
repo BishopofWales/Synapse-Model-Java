@@ -28,10 +28,16 @@ public class LizViewer extends JPanel {
             imageGraphics.fillRect(0, 0, this.getHeight(), this.getHeight());
             imageGraphics.setColor(Color.BLUE);
             imageGraphics.drawOval((int) _lizard.getX(), (int) _lizard.getY(), LIZ_RAD * 2, LIZ_RAD * 2);
+
             imageGraphics.setColor(Color.BLACK);
             imageGraphics.drawLine((int) _lizard.getX(), (int) _lizard.getY(),
                     (int) (_lizard.getX() + Math.cos(_lizard.getAng() * LIZ_LINE_LEN)),
                     (int) (_lizard.getY() + Math.sin(_lizard.getAng() * LIZ_LINE_LEN)));
+
+            imageGraphics.setColor(Color.BLACK);
+            imageGraphics.drawOval((int) _worldGeom[0].getX(), (int) _worldGeom[0].getY(),
+                    (int) _worldGeom[0].getRadius() * 2, (int) _worldGeom[0].getRadius() * 2);
+
             _lizard.proccessInput(_worldGeom);
             System.out.println("Lizard x: " + _lizard.getX());
             System.out.println("Lizard y: " + _lizard.getY());
