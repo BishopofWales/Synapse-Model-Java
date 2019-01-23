@@ -81,6 +81,8 @@ public class Lizard implements Comparable<Lizard> {
 
     @Override
     public int compareTo(Lizard arg0) {
+        if (arg0.getScore() == this.getScore())
+            return 0;
         return this.getScore() > arg0.getScore() ? -1 : 1;
     }
 

@@ -4,6 +4,8 @@ import java.util.*;
 import javax.swing.JFrame;
 
 public class Main {
+    public static final int EVO_RUNS = 10;
+
     public static void main(String[] args) {
         /*
          * int[] sampleDNA = { 1, 1, 1, 2, 2, 0, 0, 0, 0 }; Brain brain = new
@@ -44,7 +46,7 @@ public class Main {
         Grader grader = new Grader(rand);
         Mutator mutator = new Mutator(rand);
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < EVO_RUNS; i++) {
             grader.gradeLizards(lizards);
             mutator.mutateClass(lizards);
             for (int k = 0; k < lizards.length; k++) {
