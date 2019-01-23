@@ -4,6 +4,8 @@ import java.util.*;
 import javax.swing.JFrame;
 
 public class Main {
+    public static final int EVO_RUNS = 10;
+
     public static void main(String[] args) {
         /*
          * int[] sampleDNA = { 1, 1, 1, 2, 2, 0, 0, 0, 0 }; Brain brain = new
@@ -44,7 +46,7 @@ public class Main {
         Grader grader = new Grader(rand);
         Mutator mutator = new Mutator(rand);
 
-        for (int i = 0; i < 1; i++) {
+        for (int i = 0; i < EVO_RUNS; i++) {
             grader.gradeLizards(lizards);
             mutator.mutateClass(lizards);
             for (int k = 0; k < lizards.length; k++) {
@@ -69,10 +71,11 @@ public class Main {
             // Run the lizard viewer
             Circle[] worldGeom = new Circle[1];
             worldGeom[0] = new Circle(Grader.CIRCLE_SIZE, Grader.DIST_TO_GOAL * Math.cos(angleRad),
-                    Grader.DIST_TO_GOAL * Math.cos(angleRad));
+                    Grader.DIST_TO_GOAL * Math.sin(angleRad));
 
             LizViewer panel = new LizViewer(lizards[index], worldGeom);
             frame.add(panel);
+            panel.drawLine();
             panel.runView();
 
             System.out.println("(R)un another lizard or (q)uit?");

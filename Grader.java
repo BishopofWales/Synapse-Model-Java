@@ -13,8 +13,8 @@ public class Grader {
     public void gradeLizards(Lizard[] lizards) {
 
         for (Lizard lizard : lizards) {
-            lizard.resetLizard();
             testLizard(lizard);
+            lizard.resetLizard();
         }
         Arrays.sort(lizards);
     }
@@ -27,16 +27,29 @@ public class Grader {
     private void testLizard(Lizard lizard) {
         System.out.println("Testing lizard:" + lizard);
         Circle[] worldGeom = new Circle[1];
-        double randAng = _rand.nextDouble() % Math.PI;
-        worldGeom[0] = new Circle(Math.cos(randAng) * DIST_TO_GOAL, Math.sin(randAng) * DIST_TO_GOAL, CIRCLE_SIZE);
+        double randAng = 0;// _rand.nextDouble() % Math.PI;
+        worldGeom[0] = new Circle(CIRCLE_SIZE, Math.cos(randAng) * DIST_TO_GOAL, Math.sin(randAng) * DIST_TO_GOAL);
+        /*
+         * System.out.println("Food angle:" + randAng); System.out.println("Food X: " +
+         * worldGeom[0].getX()); System.out.println("Food Y: " + worldGeom[0].getY());
+         * System.out.println( "Dist before: " + Raycast.dist(lizard.getX(),
+         * lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
+         */
+
         for (int i = 0; i < TIME_GIVEN; i++) {
             lizard.proccessInput(worldGeom);
             if (Raycast.distSq(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()) < MIN_DIST_SQ) {
+                System.out.println("Dist to goal: "
+                        + Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
                 lizard.setScore(TIME_GIVEN - i);
                 return;
             }
         }
-        lizard.setScore(-Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
+        lizard.setScore(-1 * Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
+        // System.out.println(
+        // "Dist after: " + Raycast.dist(lizard.getX(), lizard.getY(),
+        // worldGeom[0].getX(), worldGeom[0].getY()));
+        // System.out.println("_________________");
     }
 
 }

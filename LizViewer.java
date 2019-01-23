@@ -22,7 +22,7 @@ public class LizViewer extends JPanel {
 
     public void runView() {
 
-        for (int i = 0; i < Grader.TIME_GIVEN; i++) {
+        for (int i = 0; i < 10/* Grader.TIME_GIVEN */; i++) {
             Graphics imageGraphics = this.getGraphics();
             imageGraphics.setColor(Color.WHITE);
             imageGraphics.fillRect(0, 0, this.getHeight(), this.getHeight());
