@@ -23,8 +23,9 @@ public class Grader {
         _rand = rand;
     }
 
-    // Assigns a grade to a lizard, based on performance of the task. private
-    void testLizard(Lizard lizard) {
+    // Assigns a grade to a lizard, based on performance of the task.
+    private void testLizard(Lizard lizard) {
+        System.out.println("Testing lizard:" + lizard);
         Circle[] worldGeom = new Circle[1];
         double randAng = _rand.nextDouble() % Math.PI;
         worldGeom[0] = new Circle(Math.cos(randAng) * DIST_TO_GOAL, Math.sin(randAng) * DIST_TO_GOAL, CIRCLE_SIZE);
@@ -35,7 +36,7 @@ public class Grader {
                 return;
             }
         }
-        lizard.setScore(Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
+        lizard.setScore(-Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
     }
 
 }
