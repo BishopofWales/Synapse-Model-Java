@@ -71,10 +71,11 @@ public class Main {
             // Run the lizard viewer
             Circle[] worldGeom = new Circle[1];
             worldGeom[0] = new Circle(Grader.CIRCLE_SIZE, Grader.DIST_TO_GOAL * Math.cos(angleRad),
-                    Grader.DIST_TO_GOAL * Math.cos(angleRad));
+                    Grader.DIST_TO_GOAL * Math.sin(angleRad));
 
             LizViewer panel = new LizViewer(lizards[index], worldGeom);
             frame.add(panel);
+            panel.drawLine();
             panel.runView();
 
             System.out.println("(R)un another lizard or (q)uit?");

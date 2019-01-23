@@ -35,6 +35,7 @@ public class Grader {
         System.out.println(
                 "Dist before: " + Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
         */
+
         for (int i = 0; i < TIME_GIVEN; i++) {
             lizard.proccessInput(worldGeom);
             if (Raycast.distSq(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()) < MIN_DIST_SQ) {
