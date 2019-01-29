@@ -1,8 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-import javax.swing.JFrame;
-
 public class Main {
     public static final int EVO_RUNS = 10;
 
@@ -55,16 +53,17 @@ public class Main {
             System.out.println("________________________________________" + i);
 
         }
+        /*
         JFrame frame = new JFrame();
-
+        
         frame.setSize(1000, 700);
-
+        
         frame.setVisible(true);
-
+        
         while (true) {
             System.out.println("Which lizard would you like to see?");
             int index = kbd.nextInt();
-
+        
             System.out.println("What angle of food would you like?");
             double angle = kbd.nextDouble();
             double angleRad = angle * Math.PI / 180;
@@ -72,21 +71,22 @@ public class Main {
             Circle[] worldGeom = new Circle[1];
             worldGeom[0] = new Circle(Grader.CIRCLE_SIZE, Grader.DIST_TO_GOAL * Math.cos(angleRad),
                     Grader.DIST_TO_GOAL * Math.sin(angleRad));
-
+        
             LizViewer panel = new LizViewer(lizards[index], worldGeom);
             frame.add(panel);
             panel.drawLine();
             panel.runView();
-
+        
             System.out.println("(R)un another lizard or (q)uit?");
             String runAgain = kbd.next();
-
+        
             if (runAgain.charAt(0) == 'q') {
                 System.exit(0);
             }
             // Perform clean up
             frame.remove(panel);
         }
+        */
 
     }
 

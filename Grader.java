@@ -25,7 +25,6 @@ public class Grader {
 
     // Assigns a grade to a lizard, based on performance of the task.
     private void testLizard(Lizard lizard) {
-        System.out.println("Testing lizard:" + lizard);
         Circle[] worldGeom = new Circle[1];
         double randAng = 0;// _rand.nextDouble() % Math.PI;
         worldGeom[0] = new Circle(CIRCLE_SIZE, Math.cos(randAng) * DIST_TO_GOAL, Math.sin(randAng) * DIST_TO_GOAL);
@@ -39,8 +38,8 @@ public class Grader {
         for (int i = 0; i < TIME_GIVEN; i++) {
             lizard.proccessInput(worldGeom);
             if (Raycast.distSq(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()) < MIN_DIST_SQ) {
-                System.out.println("Dist to goal: "
-                        + Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
+                //System.out.println("Dist to goal: "
+                //        + Raycast.dist(lizard.getX(), lizard.getY(), worldGeom[0].getX(), worldGeom[0].getY()));
                 lizard.setScore(TIME_GIVEN - i);
                 return;
             }

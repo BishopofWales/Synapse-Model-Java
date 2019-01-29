@@ -89,6 +89,7 @@ public class Lizard implements Comparable<Lizard> {
     public void resetLizard() {
         _xPos = 0;
         _yPos = 0;
+        _rotation = 0;
         _lizBrain.reset();
     }
 }
