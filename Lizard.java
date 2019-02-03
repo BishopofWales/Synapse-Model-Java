@@ -6,6 +6,7 @@ public class Lizard implements Comparable<Lizard> {
     public static final int RIGHT_NEUR = 51;
     public static final int LEFT_NEUR = 52;
     public static final int FORWARD_NEUR = 53;
+    public static final int CLOCK_NEUR = 54;
 
     private Brain _lizBrain;
     private double _xPos;
@@ -49,6 +50,8 @@ public class Lizard implements Comparable<Lizard> {
             _xPos += Math.cos(_rotation) * LIN_SPD;
             _yPos += Math.sin(_rotation) * LIN_SPD;
         }
+        //Clock neur gets released every time
+        _lizBrain.releaseNeur(CLOCK_NEUR);
     }
 
     public double getX() {
