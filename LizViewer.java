@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 public class LizViewer extends Canvas {
     private static final int LIZ_RAD = 5;
     private static final double LIZ_LINE_LEN = 8.0;
+    private double x = 0.0;
     /*
     public LizViewer(Lizard lizard, Circle[] geom) {
         super();
@@ -22,18 +23,20 @@ public class LizViewer extends Canvas {
 
     public LizViewer(double width, double height) {
         super(width, height);
+        System.out.println("intialized");
+
     }
 
     public void runView(Lizard lizard, Circle[] worldGeom) {
-
-        for (int i = 0; i < 10/* Grader.TIME_GIVEN */; i++) {
-
-        }
+        System.out.println("started view");
         GraphicsContext imageGraphics = this.getGraphicsContext2D();
         new AnimationTimer() {
             @Override
             public void handle(long now) {
+                doHandle();
+            }
 
+            private void doHandle() {
                 imageGraphics.setFill(Color.WHITE);
                 //imageGraphics.fillRect(0, 0, this.getHeight(), this.getHeight());
                 imageGraphics.setFill(Color.BLUE);
@@ -51,6 +54,23 @@ public class LizViewer extends Canvas {
                 lizard.proccessInput(worldGeom);
                 System.out.println("Lizard x: " + lizard.getX());
                 System.out.println("Lizard y: " + lizard.getY());
+            }
+        }.start();
+    }
+
+    public void test() {
+
+        GraphicsContext imageGraphics = this.getGraphicsContext2D();
+        new AnimationTimer() {
+            @Override
+            public void handle(long now) {
+                doHandle();
+            }
+
+            private void doHandle() {
+                x += 1.0;
+                imageGraphics.setFill(Color.RED);
+                imageGraphics.fillOval(0, 0, 10, 0 + x);
             }
         }.start();
     }

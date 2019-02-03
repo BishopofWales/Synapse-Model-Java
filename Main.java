@@ -18,6 +18,7 @@ public class Main extends Application {
         root.getChildren().add(lizViewer);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
+        lizViewer.test();
 
         Random rand = new Random();
         Mutator mut = new Mutator(rand);
@@ -42,25 +43,25 @@ public class Main extends Application {
 
         }
 
-        while (true) {
-            System.out.println("Which lizard would you like to see?");
-            int index = kbd.nextInt();
+        //while (true) {
+        System.out.println("Which lizard would you like to see?");
+        int index = kbd.nextInt();
 
-            System.out.println("What angle of food would you like?");
-            double angle = kbd.nextDouble();
-            double angleRad = angle * Math.PI / 180;
-            // Run the lizard viewer
-            Circle[] worldGeom = new Circle[1];
-            worldGeom[0] = new Circle(Grader.CIRCLE_SIZE, Grader.DIST_TO_GOAL * Math.cos(angleRad),
-                    Grader.DIST_TO_GOAL * Math.sin(angleRad));
-            lizViewer.runView(lizards[index], worldGeom);
-            System.out.println("(R)un another lizard or (q)uit?");
-            String runAgain = kbd.next();
+        System.out.println("What angle of food would you like?");
+        double angle = kbd.nextDouble();
+        double angleRad = angle * Math.PI / 180;
+        // Run the lizard viewer
+        Circle[] worldGeom = new Circle[1];
+        worldGeom[0] = new Circle(Grader.CIRCLE_SIZE, Grader.DIST_TO_GOAL * Math.cos(angleRad),
+                Grader.DIST_TO_GOAL * Math.sin(angleRad));
+        lizViewer.runView(lizards[index], worldGeom);
+        //System.out.println("(R)un another lizard or (q)uit?");
+        //String runAgain = kbd.next();
 
-            if (runAgain.charAt(0) == 'q') {
-                System.exit(0);
-            }
-        }
+        //if (runAgain.charAt(0) == 'q') {
+        //    System.exit(0);
+        //}
+        //}
     }
 
     public static void main(String[] args) {
